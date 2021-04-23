@@ -12,12 +12,11 @@ function getCookies(domain, name, callback) {
 //get the cookie from localhost
 getCookies("http://localhost:8000/", "cookieName", function (value) {
     console.log("cookie value:", value)
-    console.log(crhome)
 });
 
 
 //get the cookie from setmore
-getSessions("https://beta.setmore.com/", "MUID", function (value) {
+getCookies("https://beta.setmore.com/", "MUID", function (value) {
     console.log("cookie value:", value)
 });
 
