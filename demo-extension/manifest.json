@@ -1,0 +1,31 @@
+{
+    "name": "test",
+    "description": "test Share ",
+    "version": "1.0",
+    "manifest_version": 3,
+    "action": {
+        "default_title": "Test",
+        "default_popup": "index.html"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ],
+    "host_permissions": [
+        "http://localhost:8000/",
+        "https://beta.setmore.com/"
+    ],
+    "permissions": [
+        "cookies",
+        "sessions"
+    ]
+}
