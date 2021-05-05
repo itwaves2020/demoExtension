@@ -16,8 +16,9 @@
                 "<all_urls>"
             ],
             "js": [
-                "common/utils.js",
-                "content.js"
+                "common/constants.js",
+                "common/session-manager.js",
+                "js/anywhere.content.js"
             ],
             "run_at": "document_end"
         }
@@ -31,5 +32,11 @@
         "activeTab",
         "tabs",
         "storage"
-    ]
+    ],
+    "externally_connectable": {
+        "ids": [],
+        "matches": [
+            "http://localhost:8000/"
+        ]
+    }
 }

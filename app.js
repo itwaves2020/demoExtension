@@ -5,6 +5,8 @@ const app = express();
 app.set('trust proxy', 1);
 
 const MemoryStore = session.MemoryStore;
+
+app.use(express.static("./"));
 app.use(session({
     secret: 'keyboard cat',
     resave: true,
