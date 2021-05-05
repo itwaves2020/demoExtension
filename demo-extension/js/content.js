@@ -1,24 +1,49 @@
-// console.log("Content script running in page.", HOST);
 
 try {
-    chrome.runtime.onMessage.addListener(function (response, sendResponse) {
-        console.log("Content script receiving message: ", response, sendResponse);
-    });
+    var session = null;
+    $(document).ready(function () {
 
-    chrome.runtime.sendMessage({ event: EVENT_NAMES.INIT }, function (response) {
-        console.log("response:  : :  ", response);
-        if (!response.session) {
+        chrome.runtime.onMessage.addListener(function (response, sendResponse) {
+            console.log("Content script receiving message: ", response, sendResponse);
+        });
+
+        /**
+         * Initial event to store the data in local storage
+         */
+        chrome.runtime.sendMessage({ event: EVENT_NAMES.INIT }, (response) => {
+            console.log("Session storage success callback!", response);
+
+            /**
+             * Response if success bind authentication event to login
+             */
+            if (!response.success) {
+                $("#container").append(
+                    $("<button id='btn-login' type='button' class='btn btn-outline-primary'> Login </button>")
+                );
+                $("#btn-login").bind("click", createWindow);
+            } else {
+                $("#container").append(
+                    $("<div class='row'> Already logged in...! </div>")
+                );
+            }
+        });
+
+
+        /**
+         * Open new window to redirect to any page according to link
+         * @param {*} e 
+         */
+        const createWindow = (e) => {
             chrome.windows.create({
                 height: 550,
                 width: 350,
                 type: "popup",
-                // Just use the full URL if you need to open an external page
                 url: LOGIN_LINK
             }, function (tab) {
-                console.log(tab);
+                console.log("Tab: ", tab);
             });
         }
-    });
+    })
 } catch (error) {
     console.error(error)
 }

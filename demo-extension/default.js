@@ -11,10 +11,23 @@ try {
      * @param {*} name 
      * @param {*} callback 
      */
-    async function getCookies(domain, name) {
-        chrome.cookies.get({ "url": domain, "name": name }, function (cookie) {
-            session = Session.getInstance(cookie);
-        });
+    function getCookies(domain, name) {
+        return new Promise((resolve, reject) => {
+            chrome.cookies.get({ "url": domain, "name": name }, function (cookie) {
+                if (cookie) {
+                    // If session available and received from host
+                    session = Session.getInstance(cookie);
+
+
+                } else {
+                    // If no session available and received from host
+                    session = null;
+                }
+                chrome.storage.local.set({ session: session }, function (result) {
+                    resolve({ success: session ? true : false })
+                });
+            });
+        })
     }
 
     /**
@@ -28,8 +41,8 @@ try {
              */
             if (request.event === EVENT_NAMES.INIT) {
                 getCookies(HOST, "cookieName")
-                    .then(result => sendResponse({ session }))
-                    .catch(error => sendResponse(null, error));
+                    .then(result => sendResponse(result))
+                    .catch(error => sendResponse({ success: false }));
             }
 
             // Inform Chrome that we will make a delayed sendResponse

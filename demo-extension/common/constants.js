@@ -1,4 +1,3 @@
-
 const HOST = "http://localhost:8000";
 const LOGIN_LINK = `https://my.setmore.com/integration/wordpress/oauth?siteUrl=${HOST}`;
 
@@ -9,4 +8,4 @@ const EVENT_NAMES = {
     IS_LOGGEDIN: "IS_LOGGEDIN",
 }
 
-const COOKIES = {};
+const SESSION = {};
