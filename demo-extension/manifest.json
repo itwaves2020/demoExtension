@@ -8,7 +8,7 @@
         "default_popup": "index.html"
     },
     "background": {
-        "service_worker": "background.js"
+        "service_worker": "background-wrapper.js"
     },
     "content_scripts": [
         {
@@ -16,16 +16,20 @@
                 "<all_urls>"
             ],
             "js": [
+                "common/utils.js",
                 "content.js"
-            ]
+            ],
+            "run_at": "document_end"
         }
     ],
     "host_permissions": [
-        "http://localhost:8000/",
-        "https://beta.setmore.com/"
+        "http://localhost:8000/"
     ],
     "permissions": [
         "cookies",
-        "sessions"
+        "sessions",
+        "activeTab",
+        "tabs",
+        "storage"
     ]
 }
