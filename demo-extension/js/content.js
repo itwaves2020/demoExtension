@@ -11,7 +11,7 @@ try {
          * Initial event to store the data in local storage
          */
         chrome.runtime.sendMessage({ event: EVENT_NAMES.INIT }, (response) => {
-            console.log("Session storage success callback!", response);
+            console.log("********* Session storage success callback! *********", response);
 
             /**
              * Response if success bind authentication event to login

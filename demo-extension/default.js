@@ -44,6 +44,19 @@ try {
                     .then(result => sendResponse(result))
                     .catch(error => sendResponse({ success: false }));
             }
+            else if (request.event === EVENT_NAMES.SEND_COOKIES) {
+                console.log("********* Session reached! *********", request.data);
+
+                if (request.data && request.data !== "null") {
+                    chrome.cookies.set({ "url": HOST, "name": "cookieName", value: request.data }, function (cookie) {
+                        console.log("******** Cookies set perfectley *********", { cookie });
+
+                        sendResponse({ success: true, tabId: sender.tab.id });
+                        chrome.tabs.remove(sender.tab.id, { selected: true, active: true });
+                        return true;
+                    })
+                }
+            }
 
             // Inform Chrome that we will make a delayed sendResponse
             return true;
@@ -55,17 +68,9 @@ try {
      * but it works if we don't have popup to open on icon click
      */
     chrome.action.onClicked.addListener(function (e) {
-        console.info("********** ////////// **********");
+        console.info("********** ////////// **********", { e });
     })
 
-    /**
-     * Listen events from external web applications
-     */
-    chrome.runtime.onMessageExternal.addListener(
-        function (request, sender, sendResponse) {
-            console.log("External calls!");
-            sendResponse("Received!");
-        });
 } catch (error) {
     console.log(error);
 }
