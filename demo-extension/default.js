@@ -66,8 +66,6 @@ try {
             console.log("External calls!");
             sendResponse("Received!");
         });
-
-
 } catch (error) {
     console.log(error);
 }

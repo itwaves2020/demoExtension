@@ -16,6 +16,8 @@
                 "<all_urls>"
             ],
             "js": [
+                "common/jquery-3.6.0.min.js",
+                "common/utils.js",
                 "common/constants.js",
                 "common/session-manager.js",
                 "js/anywhere.content.js"
