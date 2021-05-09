@@ -18,7 +18,6 @@ try {
                     // If session available and received from host
                     session = Session.getInstance(cookie);
 
-
                 } else {
                     // If no session available and received from host
                     session = null;
