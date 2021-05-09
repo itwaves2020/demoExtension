@@ -24,11 +24,16 @@ try {
             } else {
                 $("#container").append(
                     $(`
-                        <service-wrapper class="disabled" myBooking="true" merchandId="4a506115-cac9-4d35-ad51-3719798635e1" limit="50"
-                            isDeleted=false cursor="">
-                        </service-wrapper>
+                        <div>Logged in successfully...!</div>
                     `)
                 );
+                // $("#container").append(
+                //     $(`
+                //         <service-wrapper class="disabled" myBooking="true" merchandId="4a506115-cac9-4d35-ad51-3719798635e1" limit="50"
+                //             isDeleted=false cursor="">
+                //         </service-wrapper>
+                //     `)
+                // );
             }
         });
 
