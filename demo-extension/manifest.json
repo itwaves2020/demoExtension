@@ -16,6 +16,7 @@
                 "http://localhost:8000/*"
             ],
             "js": [
+                "js/index.js",
                 "common/jquery-3.6.0.min.js",
                 "js/anywhere.content.js",
                 "common/utils.js",
@@ -33,11 +34,18 @@
         "sessions",
         "activeTab",
         "tabs",
-        "storage"
+        "storage",
+        "browsingData"
     ],
     "externally_connectable": {
+        "ids": [
+            "hiolbcbileegpkelihkfhdjnkgmaddih"
+        ],
         "matches": [
             "http://localhost:8000/"
         ]
+    },
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self'"
     }
 }

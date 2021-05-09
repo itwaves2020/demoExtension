@@ -26,3 +26,7 @@ app.get("/test", (req, res) => {
     res.cookie('cookieName', 123, { maxAge: 900000, httpOnly: true });
     res.status(200).send({ data: { message: "success" } });
 });
+
+// "content_security_policy": {
+//     "extension_pages": "'self' 'unsafe-inline' 'unsafe-eval' http://localhost:8000"
+// }

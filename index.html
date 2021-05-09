@@ -6,15 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="./demo-extension/js/index.js"></script>
+    <script src="./demo-extension/js/token.js"></script>
 </head>
 
 <body>
     ....Example Screen....
-    <div id="test-again"></div>
-    <script>
-
-        document.getElementById("test-again").innerHTML = window.location.href;
-    </script>
+    <!-- <div id="test-again"></div> -->
+    <div class="container" id="container"></div>
+    <service-wrapper class="disabled" myBooking="true" merchandId="4a506115-cac9-4d35-ad51-3719798635e1" limit="50"
+        isDeleted=false cursor="">
+    </service-wrapper>
 </body>
 
 </html>

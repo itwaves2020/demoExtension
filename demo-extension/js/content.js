@@ -24,11 +24,10 @@ try {
             } else {
                 $("#container").append(
                     $(`
-                        <div class= 'row'> Already logged in...! </div>
+                        <service-wrapper class="disabled" myBooking="true" merchandId="4a506115-cac9-4d35-ad51-3719798635e1" limit="50"
+                            isDeleted=false cursor="">
+                        </service-wrapper>
                     `)
-                    // <service-wrapper class="disabled" myBooking="true" merchandId="4a506115-cac9-4d35-ad51-3719798635e1" limit="50"
-                    //     isDeleted=false cursor="">
-                    // </service-wrapper>
                 );
             }
         });

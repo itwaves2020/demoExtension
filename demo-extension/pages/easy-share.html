@@ -23,10 +23,11 @@
             align-items: center;
         }
     </style>
-    <script src="./js/custom.element.content.js"></script>
-    <script src="./common/jquery-3.6.0.min.js"></script>
-    <script src="./common/constants.js"></script>
-    <script src="./js/content.js"></script>
+    <script src="../js/index.js"></script>
+    <script src="../common/jquery-3.6.0.min.js"></script>
+    <script src="../common/constants.js"></script>
+    <script src="../js/content.js"></script>
+    <script src="../js/token.js"></script>
 </head>
 
 <body>
@@ -34,22 +35,6 @@
     <service-wrapper class="disabled" myBooking="true" merchandId="4a506115-cac9-4d35-ad51-3719798635e1" limit="50"
         isDeleted=false cursor="">
     </service-wrapper>
-
-    <script>
-        (async function () {
-            await window.__config({
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjY4MGZjMTNkZWEwMjhhODJkM2I4NjcxZDJlN2NhZjMyZTM0NmU3ZjkifQ.eyJpc3MiOiJodHRwczovL2Z1bGxjcmVhdGl2ZS5mdWxsYXV0aC5jb20iLCJpYXQiOjE2MTk2MTAwMzAsInByb2pfaWQiOiJzZXRtb3JlIiwidHlwZSI6InVzZXIiLCJzdWIiOiI0YTUwNjExNS1jYWM5LTRkMzUtYWQ1MS0zNzE5Nzk4NjM1ZTEiLCJleHAiOjE2MjAyMTQ4MzAsImp0aSI6IjgyOWZiM09ZclVTU2pvUVIifQ.RlBgN2jpIo25CLIDnAWnfoy4FVr-I3fjfhonBVWBhFFFT4nyPOHA5-ge_y-zL5DNnDrwNlRD5AUM5Z5gioNIgbKsnxSr7xNwjsUaLAy5NB889UyZgLbLiK2kXlVrccLCMeTpqQ4KTBKN3ni-nbZ92JraFfdUG9Fac1XbXgg0h_DIdolvu4u0K9jUQeN9woneyP4T7jZ8dUC_DCTYzhQYIkJlhgMThxEuzCSC6S0hB5yXPlR3EwxXqllz-BuyprK6J9nRTIQvgrIzS6765vc5DW14Bw6je_FgtUhHHwoEaXsjDf8xj26BkXa6DxBQLeJEPtewZNOqiQ4LYOUkOKmUKw',
-                },
-                isDev: false,
-                baseUrl: "https://auth-dot-services-dot-schedulingengine.uc.r.appspot.com/schedule/v3"
-            }, (ack) => {
-                console.log(ack);
-            })
-        }())
-    </script>
 </body>
 
 </html>
