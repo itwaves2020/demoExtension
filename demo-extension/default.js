@@ -4,6 +4,16 @@ try {
         console.info('Successfully installed!');
     })
 
+    // Check sandbox click event
+    chrome.action.onClicked.addListener(() => {
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+
+            chrome.tabs.sendMessage(tabs[0].id, { type: "click" }, function (response) {
+                console.log(response)
+            });
+        });
+    });
+
 
     /**
      * Get cookes for particular url
@@ -51,7 +61,7 @@ try {
                         console.log("******** Cookies set perfectley *********", { cookie });
 
                         sendResponse({ success: true, tabId: sender.tab.id });
-                        chrome.tabs.remove(sender.tab.id, { selected: true, active: true });
+                        // chrome.tabs.remove(sender.tab.id, { selected: true, active: true });
                         return true;
                     })
                 }
@@ -66,9 +76,9 @@ try {
      * Action icon event listener, 
      * but it works if we don't have popup to open on icon click
      */
-    chrome.action.onClicked.addListener(function (e) {
-        console.info("********** ////////// **********", { e });
-    })
+    // chrome.action.onClicked.addListener(function (e) {
+    //     console.info("********** ////////// **********", { e });
+    // })
 
 } catch (error) {
     console.log(error);

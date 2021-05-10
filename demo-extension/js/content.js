@@ -17,16 +17,19 @@ try {
              * Response if success bind authentication event to login
              */
             if (!response.success) {
-                $("#container").append(
+                $("#container-11").append(
                     $("<button id='btn-login' type='button' class='btn btn-outline-primary'> Login </button>")
                 );
                 $("#btn-login").bind("click", createWindow);
             } else {
-                $("#container").append(
+
+                console.log("ASDFAFDSAF:AS:DF:SAFD ", $("#container-11"))
+                $("#container-11").append(
                     $(`
                         <div>Logged in successfully...!</div>
                     `)
                 );
+
                 // $("#container").append(
                 //     $(`
                 //         <service-wrapper class="disabled" myBooking="true" merchandId="4a506115-cac9-4d35-ad51-3719798635e1" limit="50"
@@ -36,6 +39,7 @@ try {
                 // );
             }
         });
+        // });
 
 
         /**

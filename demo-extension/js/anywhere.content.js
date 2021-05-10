@@ -1,6 +1,3 @@
-console.log("Check local host event trigger script file", window.location);
-
-
 $(document).ready(() => {
     console.log(window.location.href)
     let data = parseQueryString(window.location.search.replace("?", ""));

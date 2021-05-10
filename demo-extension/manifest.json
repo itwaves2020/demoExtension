@@ -5,7 +5,7 @@
     "manifest_version": 3,
     "action": {
         "default_title": "Test",
-        "default_popup": "index.html"
+        "default_icon": "images/easy-share.png"
     },
     "background": {
         "service_worker": "background-wrapper.js"
@@ -13,17 +13,19 @@
     "content_scripts": [
         {
             "matches": [
-                "http://localhost:8000/*"
+                "<all_urls>"
             ],
             "js": [
-                "js/index.js",
                 "common/jquery-3.6.0.min.js",
+                "js/iframe-content.js",
+                "js/content.js",
+                "js/index.js",
                 "js/anywhere.content.js",
                 "common/utils.js",
                 "common/constants.js",
                 "common/session-manager.js"
             ],
-            "run_at": "document_end"
+            "all_frames": true
         }
     ],
     "host_permissions": [
@@ -39,13 +41,27 @@
     ],
     "externally_connectable": {
         "ids": [
-            "hiolbcbileegpkelihkfhdjnkgmaddih"
+            "fohbkncpggaennnegkcbbckpmddjboal"
         ],
         "matches": [
             "http://localhost:8000/"
         ]
     },
-    "content_security_policy": {
-        "extension_pages": "script-src 'self'; object-src 'self';"
-    }
+    "sandbox": {
+        "pages": [
+            "index.html",
+            "iframe.html"
+        ]
+    },
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "index.html",
+                "iframe.html"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ]
 }
