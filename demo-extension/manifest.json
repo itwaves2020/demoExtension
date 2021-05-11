@@ -16,13 +16,11 @@
                 "<all_urls>"
             ],
             "js": [
-                "common/jquery-3.6.0.min.js",
-                "js/iframe-content.js",
                 "js/content.js",
                 "js/index.js",
-                "js/anywhere.content.js",
                 "common/utils.js",
                 "common/constants.js",
+                "js/anywhere.content.js",
                 "common/session-manager.js"
             ],
             "all_frames": true
@@ -41,27 +39,35 @@
     ],
     "externally_connectable": {
         "ids": [
-            "fohbkncpggaennnegkcbbckpmddjboal"
+            "hiolbcbileegpkelihkfhdjnkgmaddih"
         ],
         "matches": [
             "http://localhost:8000/"
-        ]
-    },
-    "sandbox": {
-        "pages": [
-            "index.html",
-            "iframe.html"
         ]
     },
     "web_accessible_resources": [
         {
             "resources": [
                 "index.html",
-                "iframe.html"
+                "login.html",
+                "js/content.js",
+                "js/token.js"
             ],
             "matches": [
                 "<all_urls>"
+            ],
+            "extension_ids": [
+                "hiolbcbileegpkelihkfhdjnkgmaddih"
             ]
         }
-    ]
+    ],
+    "content_security_policy": {
+        "sandbox": {
+            "pages": [
+                "index.html",
+                "login.html"
+            ]
+        },
+        "extension_pages": "sandbox allow-scripts; script-src 'self'; object-src 'self'"
+    }
 }

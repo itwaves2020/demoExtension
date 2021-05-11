@@ -1,11 +1,47 @@
 
 try {
     var session = null;
-    $(document).ready(function () {
+    var authElements = null;
+    console.log(chrome)
+    chrome.runtime.onMessage.addListener(function (response, sender, sendResponse) {
 
-        chrome.runtime.onMessage.addListener(function (response, sendResponse) {
-            console.log("Content script receiving message: ", response, sendResponse);
-        });
+
+        /**
+         * Render page according to requirement
+         * @param {*} html 
+         */
+        function auth(html) {
+            const root = document.createElement("div");
+            root.setAttribute('id', "easyshare-extension");
+            root.setAttribute("style", "position: fixed; display: block; width: 100%; height: 100%; top: 0; left: 0; right: 0; bottom: 0; z-index: 2000000000;");
+
+            const sideBarGrid = document.createElement("div");
+            sideBarGrid.setAttribute("style", "box-sizing: border-box;  height: 100vh; width: 100vw; display: grid; grid-template-columns: 1fr 360px; grid-template-rows: 100%; grid-template-areas: 'container sidebar'; overflow-y: hidden;")
+
+            const easyshareWrapper = document.createElement("div");
+            easyshareWrapper.setAttribute("style", "box-sizing: border-box; position: relative; grid-area: sidebar; height: 100%; width: 100%; background-color: white; border-left: 1px solid #d0d0d0; box-shadow: 0 1px 5px 0 rgb(0 0 0 / 0.2); outline: none; line-height: 1.4;");
+            const frame = document.createElement("iframe");
+            frame.setAttribute("id", "easyshare-iframe");
+            frame.setAttribute("style", "height: 100%; width: 100%;");
+            frame.setAttribute("frameborder", "0");
+            frame.sandbox = "allow-same-origin allow-scripts allow-popups allow-forms";
+            frame.src = chrome.runtime.getURL(html);
+
+            easyshareWrapper.appendChild(frame);
+
+            sideBarGrid.appendChild(easyshareWrapper);
+            root.appendChild(sideBarGrid);
+
+            root.onclick = () => {
+                const alreadyExists = document.getElementById("easyshare-extension");
+                if (alreadyExists) {
+                    document.body.removeChild(alreadyExists);
+                }
+            };
+            authElements = root;
+        }
+
+
 
         /**
          * Initial event to store the data in local storage
@@ -17,46 +53,28 @@ try {
              * Response if success bind authentication event to login
              */
             if (!response.success) {
-                $("#container-11").append(
-                    $("<button id='btn-login' type='button' class='btn btn-outline-primary'> Login </button>")
-                );
-                $("#btn-login").bind("click", createWindow);
+                auth("login.html");
+                const alreadyExists = document.getElementById("easyshare-extension");
+                if (alreadyExists) {
+                    document.body.removeChild(alreadyExists);
+                }
+                else {
+                    document.body.appendChild(authElements);
+                }
             } else {
-
-                console.log("ASDFAFDSAF:AS:DF:SAFD ", $("#container-11"))
-                $("#container-11").append(
-                    $(`
-                        <div>Logged in successfully...!</div>
-                    `)
-                );
-
-                // $("#container").append(
-                //     $(`
-                //         <service-wrapper class="disabled" myBooking="true" merchandId="4a506115-cac9-4d35-ad51-3719798635e1" limit="50"
-                //             isDeleted=false cursor="">
-                //         </service-wrapper>
-                //     `)
-                // );
+                auth("index.html");
+                const alreadyExists = document.getElementById("easyshare-extension");
+                if (alreadyExists) {
+                    document.body.removeChild(alreadyExists);
+                }
+                else {
+                    document.body.appendChild(authElements);
+                }
             }
         });
-        // });
 
-
-        /**
-         * Open new window to redirect to any page according to link
-         * @param {*} e 
-         */
-        const createWindow = (e) => {
-            chrome.windows.create({
-                height: 550,
-                width: 350,
-                type: "popup",
-                url: LOGIN_LINK
-            }, function (tab) {
-                console.log("Tab: ", tab);
-            });
-        }
-    })
+        sendResponse("OK");
+    });
 } catch (error) {
     console.error(error)
 }

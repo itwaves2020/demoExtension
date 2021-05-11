@@ -7,7 +7,6 @@ try {
     // Check sandbox click event
     chrome.action.onClicked.addListener(() => {
         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-
             chrome.tabs.sendMessage(tabs[0].id, { type: "click" }, function (response) {
                 console.log(response)
             });
@@ -56,12 +55,12 @@ try {
             else if (request.event === EVENT_NAMES.SEND_COOKIES) {
                 console.log("********* Session reached! *********", request.data);
 
-                if (request.data && request.data !== "null") {
+                if (request.data && request.data !== "null" && (request.origin === "http://localhost:8000")) {
                     chrome.cookies.set({ "url": HOST, "name": "cookieName", value: request.data }, function (cookie) {
                         console.log("******** Cookies set perfectley *********", { cookie });
 
                         sendResponse({ success: true, tabId: sender.tab.id });
-                        // chrome.tabs.remove(sender.tab.id, { selected: true, active: true });
+                        chrome.tabs.remove(sender.tab.id, { selected: true, active: true });
                         return true;
                     })
                 }
@@ -71,14 +70,6 @@ try {
             return true;
         }
     );
-
-    /**
-     * Action icon event listener, 
-     * but it works if we don't have popup to open on icon click
-     */
-    // chrome.action.onClicked.addListener(function (e) {
-    //     console.info("********** ////////// **********", { e });
-    // })
 
 } catch (error) {
     console.log(error);

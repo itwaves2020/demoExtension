@@ -9,52 +9,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <style>
-        body {
-            height: 600px;
-            /* width: 300px; */
-        }
-
-        .container {
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    </style>
-
-    <script src="./common/jquery-3.6.0.min.js"></script>
-    <script src="./js/decorator-binding.js"></script>
-    <script src="./js/iframe-content.js"></script>
     <script src="./js/index.js"></script>
-    <script src="./js/token.js"></script>
+    <script src="./common/utils.js"></script>
+    <script>
+        // let token = window.localStorage.getItem("token");
+        // console.log(window)
+    </script>
 
 </head>
 
-<body>
-    <div class="container" id="container-11"></div>
-    <div id="service-wrapper-div" class="service-wrapper-div"></div>
-    <!-- <service-wrapper class="disabled" myBooking="true" merchandId="4a506115-cac9-4d35-ad51-3719798635e1" limit="50"
-        isDeleted=false cursor="">
-    </service-wrapper> -->
+<body style="padding: 10px">
+    <script src="./js/token.js"></script>
 </body>
 
 </html>
-<!-- 
-"sandbox": {
-    "pages": [
-        "index.html",
-        "iframe.html"
-    ]
-},
-"web_accessible_resources": [
-    {
-        "resources": [
-            "index.html",
-            "iframe.html"
-        ],
-        "matches": [
-            "<all_urls>"
-        ]
-    }
-], -->
