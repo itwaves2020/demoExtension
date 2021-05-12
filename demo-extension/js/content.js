@@ -29,7 +29,7 @@ try {
 
             easyshareWrapper.appendChild(frame);
 
-            sideBarGrid.appendChild(easyshareWrapper);
+            sideBarGrid.appendChild(easyshareWrapper); ``
             root.appendChild(sideBarGrid);
 
             root.onclick = () => {

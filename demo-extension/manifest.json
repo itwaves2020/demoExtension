@@ -45,6 +45,12 @@
             "http://localhost:8000/"
         ]
     },
+    "sandbox": {
+        "pages": [
+            "index.html",
+            "login.html"
+        ]
+    },
     "web_accessible_resources": [
         {
             "resources": [
@@ -62,12 +68,7 @@
         }
     ],
     "content_security_policy": {
-        "sandbox": {
-            "pages": [
-                "index.html",
-                "login.html"
-            ]
-        },
-        "extension_pages": "sandbox allow-scripts; script-src 'self'; object-src 'self'"
+        "extension_pages": "script-src 'self'; object-src 'none'",
+        "content_scripts": "script-src 'self'; object-src 'none'"
     }
 }
