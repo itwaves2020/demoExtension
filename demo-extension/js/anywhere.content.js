@@ -8,8 +8,6 @@ chrome.runtime.sendMessage(EXTENSION_ID, {
     event: EVENT_NAMES.SEND_COOKIES,
     origin: window.location.origin,
     data: JSON.stringify(data),
-},
-    (response, sender) => {
-        console.log(" ********** Close login tab ********** ", { response });
-    }
-);
+}, (response, sender) => {
+    console.log(" ********** Close login tab ********** ", response);
+});

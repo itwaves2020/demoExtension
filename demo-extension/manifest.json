@@ -5,7 +5,8 @@
     "manifest_version": 3,
     "action": {
         "default_title": "Test",
-        "default_icon": "images/easy-share.png"
+        "default_icon": "images/easy-share.png",
+        "default_popup": "index.html"
     },
     "background": {
         "service_worker": "background-wrapper.js"
@@ -16,10 +17,10 @@
                 "<all_urls>"
             ],
             "js": [
-                "js/content.js",
                 "js/index.js",
                 "common/utils.js",
                 "common/constants.js",
+                "js/content.js",
                 "js/anywhere.content.js",
                 "common/session-manager.js"
             ],
@@ -45,30 +46,7 @@
             "http://localhost:8000/"
         ]
     },
-    "sandbox": {
-        "pages": [
-            "index.html",
-            "login.html"
-        ]
-    },
-    "web_accessible_resources": [
-        {
-            "resources": [
-                "index.html",
-                "login.html",
-                "js/content.js",
-                "js/token.js"
-            ],
-            "matches": [
-                "<all_urls>"
-            ],
-            "extension_ids": [
-                "hiolbcbileegpkelihkfhdjnkgmaddih"
-            ]
-        }
-    ],
     "content_security_policy": {
-        "extension_pages": "script-src 'self'; object-src 'none'",
-        "content_scripts": "script-src 'self'; object-src 'none'"
+        "extension_pages": "script-src 'self'; object-src 'self'"
     }
 }

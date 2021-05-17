@@ -1,28 +1,13 @@
 (async function () {
-    console.log(chrome.app.getDetails())
-    window.accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjY4MGZjMTNkZWEwMjhhODJkM2I4NjcxZDJlN2NhZjMyZTM0NmU3ZjkifQ.eyJpc3MiOiJodHRwczovL2Z1bGxjcmVhdGl2ZS5mdWxsYXV0aC5jb20iLCJpYXQiOjE2MjA1NzI2NTUsInByb2pfaWQiOiJzZXRtb3JlIiwidHlwZSI6InVzZXIiLCJzdWIiOiI0YTUwNjExNS1jYWM5LTRkMzUtYWQ1MS0zNzE5Nzk4NjM1ZTEiLCJleHAiOjE2MjExNzc0NTUsImp0aSI6IjgyOWYyYmZmR052TTR5aTEifQ.lEpi9UxoGxTbGuZFGnqILOZZQqMgRWs-1HuVaDsMtt_pacjEwP0agHo0amCg97yMxLUsntJzb7ikPqGI7LqH3-MPQTyJt3XV07lOXvERBAsWa-lOB8vQFg8m4zRNaOvXZe_wPqK16COLCyvlqcHpOHMZ2fT_VUAV-4KVhttRcGdq3E2PDAIWxQdq8QiZQLeN3vHnrjEsa6A-QBLhnw94UYGnQpVQU6_qQYJVYg_hqBU3phtAWI8pLMBcL0JRCdItI9bWvCeRkqnq4hpeb1d7MtYza9IlykKwfipqYh607YAmSx9YUYC_Q4dSuTJ3ULaWK2VX2c-eDbRWFcvVn6wr5w";
     await window.__config({
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjY4MGZjMTNkZWEwMjhhODJkM2I4NjcxZDJlN2NhZjMyZTM0NmU3ZjkifQ.eyJpc3MiOiJodHRwczovL2Z1bGxjcmVhdGl2ZS5mdWxsYXV0aC5jb20iLCJpYXQiOjE2MjA1NzI2NTUsInByb2pfaWQiOiJzZXRtb3JlIiwidHlwZSI6InVzZXIiLCJzdWIiOiI0YTUwNjExNS1jYWM5LTRkMzUtYWQ1MS0zNzE5Nzk4NjM1ZTEiLCJleHAiOjE2MjExNzc0NTUsImp0aSI6IjgyOWYyYmZmR052TTR5aTEifQ.lEpi9UxoGxTbGuZFGnqILOZZQqMgRWs-1HuVaDsMtt_pacjEwP0agHo0amCg97yMxLUsntJzb7ikPqGI7LqH3-MPQTyJt3XV07lOXvERBAsWa-lOB8vQFg8m4zRNaOvXZe_wPqK16COLCyvlqcHpOHMZ2fT_VUAV-4KVhttRcGdq3E2PDAIWxQdq8QiZQLeN3vHnrjEsa6A-QBLhnw94UYGnQpVQU6_qQYJVYg_hqBU3phtAWI8pLMBcL0JRCdItI9bWvCeRkqnq4hpeb1d7MtYza9IlykKwfipqYh607YAmSx9YUYC_Q4dSuTJ3ULaWK2VX2c-eDbRWFcvVn6wr5w',
+            'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjY4MGZjMTNkZWEwMjhhODJkM2I4NjcxZDJlN2NhZjMyZTM0NmU3ZjkifQ.eyJpc3MiOiJodHRwczovL2Z1bGxjcmVhdGl2ZS5mdWxsYXV0aC5jb20iLCJpYXQiOjE2MjA4MTEzMTYsInByb2pfaWQiOiJzZXRtb3JlIiwidHlwZSI6InVzZXIiLCJzdWIiOiI0YTUwNjExNS1jYWM5LTRkMzUtYWQ1MS0zNzE5Nzk4NjM1ZTEiLCJleHAiOjE2MjE0MTYxMTYsImp0aSI6IjdlZmQ0Y05UeUdrYlQ3TWwifQ.vELiE1Z588CSytGlpZwmwW7dR6TmJC60c3EM-ZJx2DmmY9znHPwUhzGCoEEbFOr2rEQpDf63Z6IB68EabgzRMRSnEAotMTY7IlgxHPuRMqKzkkaib-mpHRunl04XcJQWt33IEYdrDheUB3Ylqd7YruiFgeHG9Q4sZxbBb3a94VbPHJNbHA5YOJhuu1zoVbr_0B8iBVvtzbOplP4TkpPNPhF-mLJlGR5eqqnbpzQYU5v1dPbycYJyNixAPDi3Bo783wSwA4RSS4sxd1iJBBK--dYF_XQ-L2GFxSnbqsDPMddREZw6P8N_yTZ6N8qU9I1JPE-6sJtS73b7yTfPyIDwBg',
         },
         isDev: false,
         baseUrl: "https://auth-dot-services-dot-schedulingengine.uc.r.appspot.com/schedule/v3"
     }, (ack) => {
-        console.log("Chgrome to check cookies functio: ", chrome)
-        window.addEventListener("click", function (e) {
-            console.log("===> > >> >>>   Event: ", e)
-        })
-        let extracted = parseJwt(window.accessToken || "");
-        if (extracted) {
-            let serviceWrapper = document.createElement("service-wrapper");
-            serviceWrapper.setAttribute("class", "disabled");
-            serviceWrapper.setAttribute("myBooking", "true");
-            serviceWrapper.setAttribute("merchandId", extracted.sub);
-            serviceWrapper.setAttribute("limit", "50");
-            serviceWrapper.setAttribute("cursor", "");
-            document.body.appendChild(serviceWrapper);
-        }
+        console.log("Chgrome to check cookies function:=> ", chrome);
     })
 }())

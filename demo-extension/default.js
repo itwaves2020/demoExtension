@@ -6,9 +6,10 @@ try {
 
     // Check sandbox click event
     chrome.action.onClicked.addListener(() => {
+        console.log("asdfkl;jas dflaks fdajsk ldfa dfka sdf asdfas ;kfja sdf alsfas")
         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
             chrome.tabs.sendMessage(tabs[0].id, { type: "click" }, function (response) {
-                console.log(response)
+                console.log("asdfasdfasdfsadf=dfas=f=a=sf=as=fa=sf=a> > >  >  ", response)
             });
         });
     });
@@ -32,7 +33,7 @@ try {
                     session = null;
                 }
                 chrome.storage.local.set({ session: session }, function (result) {
-                    resolve({ success: session ? true : false })
+                    resolve({ success: session ? true : false, session: session })
                 });
             });
         })
@@ -43,7 +44,6 @@ try {
      */
     chrome.runtime.onMessage.addListener(
         (request, sender, sendResponse) => {
-
             /**
              * Initial event
              */
@@ -56,13 +56,15 @@ try {
                 console.log("********* Session reached! *********", request.data);
 
                 if (request.data && request.data !== "null" && (request.origin === "http://localhost:8000")) {
-                    chrome.cookies.set({ "url": HOST, "name": "cookieName", value: request.data }, function (cookie) {
+                    chrome.cookies.set({ url: HOST, name: "cookieName", value: request.data }, function (cookie) {
                         console.log("******** Cookies set perfectley *********", { cookie });
 
                         sendResponse({ success: true, tabId: sender.tab.id });
                         chrome.tabs.remove(sender.tab.id, { selected: true, active: true });
                         return true;
                     })
+                } else {
+                    sendResponse({ success: false });
                 }
             }
 
