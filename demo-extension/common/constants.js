@@ -1,6 +1,6 @@
 const HOST = "http://localhost:8000";
 const LOGIN_LINK = `https://my.setmore.com/integration/wordpress/oauth?siteUrl=${HOST}`;
-const EXTENSION_ID = `hiolbcbileegpkelihkfhdjnkgmaddih`;
+const EXTENSION_ID = `fohbkncpggaennnegkcbbckpmddjboal`;
 
 const EVENT_NAMES = {
     INIT: "INIT",

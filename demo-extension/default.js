@@ -56,12 +56,15 @@ try {
                 console.log("********* Session reached! *********", request.data);
 
                 if (request.data && request.data !== "null" && (request.origin === "http://localhost:8000")) {
-                    chrome.cookies.set({ url: HOST, name: "cookieName", value: request.data }, function (cookie) {
-                        console.log("******** Cookies set perfectley *********", { cookie });
+                    chrome.cookies.set({ url: HOST, name: "cookieName", value: request.data }, async function (cookie) {
 
-                        sendResponse({ success: true, tabId: sender.tab.id });
-                        chrome.tabs.remove(sender.tab.id, { selected: true, active: true });
+                        console.log("******** Cookies set perfectley *********", { cookie });
+                        let queryOptions = { active: true, currentWindow: true };
+                        let [tab] = await chrome.tabs.query(queryOptions);
+
+                        chrome.windows.remove(tab.windowId);
                         return true;
+
                     })
                 } else {
                     sendResponse({ success: false });

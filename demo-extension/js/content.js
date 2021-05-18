@@ -12,16 +12,18 @@ chrome.runtime.sendMessage({ event: EVENT_NAMES.INIT }, (response) => {
      * Response if success bind authentication event to login
      */
     if (!response.success) {
-
+        let wrapper = document.createElement("div");
+        wrapper.setAttribute("class", "container text-center");
         let btn = document.createElement("button");
         btn.innerHTML = "Login";
         btn.setAttribute("class", "btn btn-lg");
-        document.body.appendChild(btn);
         btn.addEventListener("click", loginModal);
+        wrapper.appendChild(btn)
+        document.body.appendChild(wrapper);
+
 
     } else {
         let sessionData = JSON.parse(((((response || {}).session || {}).cookies || {}).value || {}));
-        console.log("Ress==> ", sessionData);
         let serviceWrapper = `<service-wrapper 
             class="disabled" 
             merchandId=${sessionData.companyKey}
@@ -30,7 +32,6 @@ chrome.runtime.sendMessage({ event: EVENT_NAMES.INIT }, (response) => {
             cursor="" 
         />`;
         document.body.innerHTML = serviceWrapper;
-
     }
 });
 
