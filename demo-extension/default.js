@@ -6,10 +6,9 @@ try {
 
     // Check sandbox click event
     chrome.action.onClicked.addListener(() => {
-        console.log("asdfkl;jas dflaks fdajsk ldfa dfka sdf asdfas ;kfja sdf alsfas")
         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
             chrome.tabs.sendMessage(tabs[0].id, { type: "click" }, function (response) {
-                console.log("asdfasdfasdfsadf=dfas=f=a=sf=as=fa=sf=a> > >  >  ", response)
+                console.log("********** Popup click fired **********", response);
             });
         });
     });
