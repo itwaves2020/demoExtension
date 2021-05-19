@@ -20,9 +20,7 @@
                 "js/index.js",
                 "common/utils.js",
                 "common/constants.js",
-                "js/content.js",
-                "js/anywhere.content.js",
-                "common/session-manager.js"
+                "js/anywhere.content.js"
             ],
             "all_frames": true
         }

@@ -8,6 +8,6 @@
         isDev: false,
         baseUrl: "https://auth-dot-services-dot-schedulingengine.uc.r.appspot.com/schedule/v3"
     }, (ack) => {
-        console.log("Chgrome to check cookies function:=> ", chrome);
+        console.log("**  TOKEN.JS **");
     })
 }())

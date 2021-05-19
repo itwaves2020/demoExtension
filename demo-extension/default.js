@@ -32,7 +32,7 @@ try {
                     session = null;
                 }
                 chrome.storage.local.set({ session: session }, function (result) {
-                    resolve({ success: session ? true : false, session: session })
+                    resolve({ success: session ? true : false, session: session, from: "default.js" })
                 });
             });
         })
@@ -49,7 +49,7 @@ try {
             if (request.event === EVENT_NAMES.INIT) {
                 getCookies(HOST, "cookieName")
                     .then(result => sendResponse(result))
-                    .catch(error => sendResponse({ success: false }));
+                    .catch(error => sendResponse({ success: false, from: "default.js" }));
             }
             else if (request.event === EVENT_NAMES.SEND_COOKIES) {
                 console.log("********* Session reached! *********", request.data);
@@ -58,15 +58,31 @@ try {
                     chrome.cookies.set({ url: HOST, name: "cookieName", value: request.data }, async function (cookie) {
 
                         console.log("******** Cookies set perfectley *********", { cookie });
-                        let queryOptions = { active: true, currentWindow: true };
-                        let [tab] = await chrome.tabs.query(queryOptions);
-
-                        chrome.windows.remove(tab.windowId);
+                        sendResponse({ success: true, data: request.data, from: "default.js" });
+                        // console.log(tab)
+                        // chrome.tabs.remove(tab.id);
                         return true;
 
                     })
                 } else {
-                    sendResponse({ success: false });
+                    sendResponse({ success: false, from: "default.js" });
+                }
+            }
+            else if (request.event === EVENT_NAMES.COOKIES_RECEIVED) {
+                if (request.data && request.data !== "null") {
+                    console.log("*********** Check I am here or not ==>", request.data)
+                    chrome.runtime.sendMessage({
+                        data: request.data,
+                        event: EVENT_NAMES.COOKIES_RECEIVED,
+                        from: "default.js"
+                    }, (response) => {
+                        console.log("*********** Session cookies data sent to content script ********* ");
+                        sendResponse({ success: true, from: "default.js" })
+
+                        return true;
+                    })
+                } else {
+                    sendResponse({ success: false, from: "default.js" });
                 }
             }
 

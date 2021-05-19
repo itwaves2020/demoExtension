@@ -14,13 +14,13 @@ chrome.runtime.sendMessage({ event: EVENT_NAMES.INIT }, (response) => {
     if (!response.success) {
         let wrapper = document.createElement("div");
         wrapper.setAttribute("class", "container text-center");
+        wrapper.setAttribute("id", "container");
         let btn = document.createElement("button");
         btn.innerHTML = "Login";
         btn.setAttribute("class", "btn btn-lg");
         btn.addEventListener("click", loginModal);
         wrapper.appendChild(btn)
         document.body.appendChild(wrapper);
-
 
     } else {
         let sessionData = JSON.parse(((((response || {}).session || {}).cookies || {}).value || {}));
@@ -34,6 +34,29 @@ chrome.runtime.sendMessage({ event: EVENT_NAMES.INIT }, (response) => {
         document.body.innerHTML = serviceWrapper;
     }
 });
+
+chrome.runtime.onMessage.addListener(
+    (request, sender, sendResponse) => {
+        if (request.event === EVENT_NAMES.COOKIES_RECEIVED) {
+            if (request.data && request.data != "null") {
+                let sessionData = JSON.parse((request || {}).data || {});
+                let serviceWrapper = `<service-wrapper 
+                    class="disabled" 
+                    merchandId=${sessionData.companyKey}
+                    limit="50"
+                    isDeleted=true 
+                    cursor="" 
+                />`;
+                let container = document.getElementById("container");
+                document.getElementsByTagName("body")[0].removeChild(container);
+                document.body.innerHTML = serviceWrapper;
+            } else {
+                sendResponse({ status: false, from: "content.js" });
+            }
+        }
+        return true;
+    }
+)
 
 /**
  * Login modal
