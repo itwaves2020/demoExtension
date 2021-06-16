@@ -1,7 +1,11 @@
 var session = null;
 try {
     chrome.runtime.onInstalled.addListener(function () {
-        console.info('Successfully installed!');
+        // fetch("https://my.setmore.com/auth/getLoggedInUser").then(async result => {
+        //     console.log(await result.json());
+        // }).catch(error => {
+        //     console.log("Error: : => ", error)
+        // })
     })
 
     // Check sandbox click event
@@ -24,6 +28,7 @@ try {
         return new Promise((resolve, reject) => {
             chrome.cookies.get({ "url": domain, "name": name }, function (cookie) {
                 if (cookie) {
+                    console.log("cookeieeieiee", cookie)
                     // If session available and received from host
                     session = Session.getInstance(cookie);
 
@@ -47,15 +52,15 @@ try {
              * Initial event
              */
             if (request.event === EVENT_NAMES.INIT) {
-                getCookies(HOST, "cookieName")
+                getCookies(HOST, COOKIE_NAME)
                     .then(result => sendResponse(result))
                     .catch(error => sendResponse({ success: false, from: "default.js" }));
             }
             else if (request.event === EVENT_NAMES.SEND_COOKIES) {
                 console.log("********* Session reached! *********", request.data);
 
-                if (request.data && request.data !== "null" && (request.origin === "http://localhost:8000")) {
-                    chrome.cookies.set({ url: HOST, name: "cookieName", value: request.data }, async function (cookie) {
+                if (request.data && request.data !== "null" && (request.origin === HOST)) {
+                    chrome.cookies.set({ url: HOST, name: COOKIE_NAME, value: request.data }, async function (cookie) {
 
                         console.log("******** Cookies set perfectley *********", { cookie });
                         sendResponse({ success: true, data: request.data, from: "default.js" });

@@ -5,9 +5,7 @@ var authElements = null;
 /**
  * Initial event to store the data in local storage
  */
-chrome.runtime.sendMessage({ event: EVENT_NAMES.INIT }, (response) => {
-    console.log("********* Session storage success callback! *********", response);
-
+chrome.runtime.sendMessage({ event: EVENT_NAMES.INIT }, async (response) => {
     /**
      * Response if success bind authentication event to login
      */
@@ -23,11 +21,25 @@ chrome.runtime.sendMessage({ event: EVENT_NAMES.INIT }, (response) => {
         document.body.appendChild(wrapper);
 
     } else {
-        let sessionData = JSON.parse(((((response || {}).session || {}).cookies || {}).value || {}));
+        const result = await fetch(CHECK_SESSION_API);
+        const data = await result.json();
+
+        await window.__config({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${data.authToken}`
+            },
+            isDev: false,
+            baseUrl: "https://my.setmore.com"
+        }, async (ack) => {
+            console.log(ack);
+            console.log(await window.__config({ headers: {} }));
+        })
+        let decoded = parseJwt(data.authToken);
         let serviceWrapper = `<service-wrapper 
             class="disabled" 
-            merchandId=${sessionData.companyKey}
-            limit="50"
+            merchandId=${decoded.sub}
             isDeleted=true 
             cursor="" 
         />`;
@@ -42,7 +54,7 @@ chrome.runtime.onMessage.addListener(
                 let sessionData = JSON.parse((request || {}).data || {});
                 let serviceWrapper = `<service-wrapper 
                     class="disabled" 
-                    merchandId=${sessionData.companyKey}
+                    merchandId=8d3432dd-a887476e-05ec-8dfd-8781-9aae19734e68
                     limit="50"
                     isDeleted=true 
                     cursor="" 

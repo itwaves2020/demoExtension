@@ -14,7 +14,7 @@
     "content_scripts": [
         {
             "matches": [
-                "http://localhost:8000/*"
+                "https://my.setmore.com/*"
             ],
             "js": [
                 "js/index.js",
@@ -26,7 +26,7 @@
         }
     ],
     "host_permissions": [
-        "http://localhost:8000/"
+        "https://my.setmore.com/"
     ],
     "permissions": [
         "cookies",
@@ -41,7 +41,7 @@
             "fohbkncpggaennnegkcbbckpmddjboal"
         ],
         "matches": [
-            "http://localhost:8000/"
+            "https://my.setmore.com/"
         ]
     },
     "content_security_policy": {

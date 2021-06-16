@@ -1,13 +1,20 @@
 (async function () {
-    await window.__config({
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjY4MGZjMTNkZWEwMjhhODJkM2I4NjcxZDJlN2NhZjMyZTM0NmU3ZjkifQ.eyJpc3MiOiJodHRwczovL2Z1bGxjcmVhdGl2ZS5mdWxsYXV0aC5jb20iLCJpYXQiOjE2MjA4MTEzMTYsInByb2pfaWQiOiJzZXRtb3JlIiwidHlwZSI6InVzZXIiLCJzdWIiOiI0YTUwNjExNS1jYWM5LTRkMzUtYWQ1MS0zNzE5Nzk4NjM1ZTEiLCJleHAiOjE2MjE0MTYxMTYsImp0aSI6IjdlZmQ0Y05UeUdrYlQ3TWwifQ.vELiE1Z588CSytGlpZwmwW7dR6TmJC60c3EM-ZJx2DmmY9znHPwUhzGCoEEbFOr2rEQpDf63Z6IB68EabgzRMRSnEAotMTY7IlgxHPuRMqKzkkaib-mpHRunl04XcJQWt33IEYdrDheUB3Ylqd7YruiFgeHG9Q4sZxbBb3a94VbPHJNbHA5YOJhuu1zoVbr_0B8iBVvtzbOplP4TkpPNPhF-mLJlGR5eqqnbpzQYU5v1dPbycYJyNixAPDi3Bo783wSwA4RSS4sxd1iJBBK--dYF_XQ-L2GFxSnbqsDPMddREZw6P8N_yTZ6N8qU9I1JPE-6sJtS73b7yTfPyIDwBg',
-        },
-        isDev: false,
-        baseUrl: "https://auth-dot-services-dot-schedulingengine.uc.r.appspot.com/schedule/v3"
-    }, (ack) => {
-        console.log("**  TOKEN.JS **");
-    })
+    // fetch(CHECK_SESSION_API).then(async result => {
+    //     let data = await result.json();
+
+    //     let headers = {
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json'
+    //     };
+    //     // headers['Authorization'] = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjY4MGZjMTNkZWEwMjhhODJkM2I4NjcxZDJlN2NhZjMyZTM0NmU3ZjkifQ.eyJpc3MiOiJodHRwczovL2Z1bGxjcmVhdGl2ZS5mdWxsYXV0aC5jb20iLCJpYXQiOjE2MjMzMTYyMTMsInByb2pfaWQiOiJzZXRtb3JlIiwidHlwZSI6InVzZXIiLCJzdWIiOiI0YTUwNjExNS1jYWM5LTRkMzUtYWQ1MS0zNzE5Nzk4NjM1ZTEiLCJleHAiOjE2MjM5MjEwMTMsImp0aSI6ImJkODMxYmo3Ym5BUHNUVXcifQ.oQEQFh5DEGpJt_qtcuUrOZVkLEfVKM5lrg-DQK10MJhbqdDsL2xteP9No5YBwxhqWSge521Cttg5HIaUxarSCg8kRoOCE_PZgVlBXZ07H5RAi1_BELmWae5cSST9bGBf2RuK-C8sKWX1NsrpsB2bGXd0fzP5dlPbJQqVOz2kmB7AoudNDX-RZsggVkTxkjKIzXhLvmVxIjGh_5gaze441IQ3ffvXCjUNdCkj177Dzpc3PmpjcOy-_R0rJbENuUK2lBhUFiMoHC5JmVK-TgKXZ3XA5yg5HkHHCUkKWLzE6dxhj8bE0jyNiu6leefnTg7sLcWtR2TvCDni6x6V-GPC6A`;
+    //     console.log(data)
+    //     headers['Authorization'] = `Bearer ${data.authToken}`;
+    //     await window.__config({
+    //         headers,
+    //         isDev: false,
+    //         baseUrl: "https://my.setmore.com"
+    //     }, (ack) => {
+    //         console.log(ack);
+    //     })
+    // })
 }())

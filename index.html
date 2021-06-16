@@ -21,4 +21,19 @@
 
 </body>
 
+<script>
+    const readData = async (body) => {
+        // const reader = body.pipeThrough(new TextDecoderStream())
+        //     .pipeTo(new FinalDestinationStream());
+        return await body.json();
+    }
+    fetch("https://my.setmore.com/auth/getLoggedInUser").then(async result => {
+        console.log("Result: => ", result.body.getReader());
+        let data = await readData(result.body);
+        console.log("Response: ", data);
+    }).catch(error => {
+        console.log("Error: : => ", error)
+    })
+</script>
+
 </html>
