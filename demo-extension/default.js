@@ -1,11 +1,7 @@
 var session = null;
 try {
     chrome.runtime.onInstalled.addListener(function () {
-        // fetch("https://my.setmore.com/auth/getLoggedInUser").then(async result => {
-        //     console.log(await result.json());
-        // }).catch(error => {
-        //     console.log("Error: : => ", error)
-        // })
+        console.log("Extension installed!")
     })
 
     // Check sandbox click event
@@ -26,7 +22,7 @@ try {
      */
     function getCookies(domain, name) {
         return new Promise((resolve, reject) => {
-            chrome.cookies.get({ "url": domain, "name": name }, function (cookie) {
+            chrome.cookies.get({ "url": domain, "name": name, secure: true }, function (cookie) {
                 if (cookie) {
                     console.log("cookeieeieiee", cookie)
                     // If session available and received from host
@@ -52,15 +48,15 @@ try {
              * Initial event
              */
             if (request.event === EVENT_NAMES.INIT) {
-                getCookies(HOST, COOKIE_NAME)
+                getCookies(CONSTANTS[ENV].HOST, CONSTANTS[ENV].COOKIE_NAME)
                     .then(result => sendResponse(result))
                     .catch(error => sendResponse({ success: false, from: "default.js" }));
             }
             else if (request.event === EVENT_NAMES.SEND_COOKIES) {
                 console.log("********* Session reached! *********", request.data);
 
-                if (request.data && request.data !== "null" && (request.origin === HOST)) {
-                    chrome.cookies.set({ url: HOST, name: COOKIE_NAME, value: request.data }, async function (cookie) {
+                if (request.data && request.data !== "null" && (request.origin === CONSTANTS[ENV].HOST)) {
+                    chrome.cookies.set({ url: CONSTANTS[ENV].HOST, name: CONSTANTS[ENV].COOKIE_NAME, value: request.data }, async function (cookie) {
 
                         console.log("******** Cookies set perfectley *********", { cookie });
                         sendResponse({ success: true, data: request.data, from: "default.js" });

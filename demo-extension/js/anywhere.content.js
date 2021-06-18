@@ -4,7 +4,7 @@ if (!data) {
 }
 
 // If data session found
-chrome.runtime.sendMessage(EXTENSION_ID, {
+chrome.runtime.sendMessage(CONSTANTS[ENV].EXTENSION_ID, {
     event: EVENT_NAMES.SEND_COOKIES,
     origin: window.location.origin,
     data: JSON.stringify(data),
@@ -13,7 +13,7 @@ chrome.runtime.sendMessage(EXTENSION_ID, {
     console.log(" ********** Close login tab ********** ", response);
 
     if ((response || {}).data) {
-        chrome.runtime.sendMessage(EXTENSION_ID, {
+        chrome.runtime.sendMessage(CONSTANTS[ENV].EXTENSION_ID, {
             event: EVENT_NAMES.COOKIES_RECEIVED,
             data: JSON.stringify(data),
             from: "anywhere.js"

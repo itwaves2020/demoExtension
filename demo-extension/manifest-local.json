@@ -1,6 +1,6 @@
 {
-    "name": "Easy Share",
-    "description": "Easy Share ",
+    "name": "test",
+    "description": "test Share ",
     "version": "1.0",
     "manifest_version": 3,
     "action": {
@@ -14,7 +14,7 @@
     "content_scripts": [
         {
             "matches": [
-                "https://my.setmore.com/*"
+                "http://localhost:8000/*"
             ],
             "js": [
                 "js/index.js",
@@ -26,7 +26,7 @@
         }
     ],
     "host_permissions": [
-        "https://my.setmore.com"
+        "http://localhost:8000"
     ],
     "permissions": [
         "cookies",
@@ -34,15 +34,14 @@
         "activeTab",
         "tabs",
         "storage",
-        "browsingData",
-        "https://my.setmore.com"
+        "browsingData"
     ],
     "externally_connectable": {
         "ids": [
             "fohbkncpggaennnegkcbbckpmddjboal"
         ],
         "matches": [
-            "https://my.setmore.com/"
+            "http://localhost:8000/"
         ]
     },
     "content_security_policy": {

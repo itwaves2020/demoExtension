@@ -21,7 +21,7 @@ chrome.runtime.sendMessage({ event: EVENT_NAMES.INIT }, async (response) => {
         document.body.appendChild(wrapper);
 
     } else {
-        const result = await fetch(CHECK_SESSION_API);
+        const result = await fetch(CONSTANTS[ENV].CHECK_SESSION_API);
         const data = await result.json();
 
         await window.__config({
@@ -31,11 +31,12 @@ chrome.runtime.sendMessage({ event: EVENT_NAMES.INIT }, async (response) => {
                 'Authorization': `Bearer ${data.authToken}`
             },
             isDev: false,
-            baseUrl: "https://my.setmore.com"
+            baseUrl: CONSTANTS[ENV].API_BASE_URL
         }, async (ack) => {
             console.log(ack);
             console.log(await window.__config({ headers: {} }));
-        })
+        });
+
         let decoded = parseJwt(data.authToken);
         let serviceWrapper = `<service-wrapper 
             class="disabled" 
@@ -75,12 +76,10 @@ chrome.runtime.onMessage.addListener(
  */
 function loginModal() {
     chrome.windows.create({
-        url: LOGIN_LINK,
+        url: CONSTANTS[ENV].LOGIN_LINK,
         type: "popup",
         height: 600,
         width: 400,
         left: 400
     });
 }
-
-
